@@ -15,4 +15,4 @@ MonoBehaviour:
   Name: rrrrr
   Description: RRRR
   Sprite: {fileID: 21300000, guid: 8c7eed5e71bbf0349b0559e301901ae2, type: 3}
-  Level: 0
+  Level: -1

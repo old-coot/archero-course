@@ -15,4 +15,4 @@ MonoBehaviour:
   Name: aaaa
   Description: AAAAA
   Sprite: {fileID: 21300000, guid: fd8a59ee53d7d7f448903dae58b6b14b, type: 3}
-  Level: 0
+  Level: -1

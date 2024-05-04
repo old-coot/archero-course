@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace archero
@@ -10,7 +8,12 @@ namespace archero
         [TextArea(1, 3)]
         public string Description;
         public Sprite Sprite;
-        public int Level = 0;
+        public int Level = -1;
+
+        public virtual void Activate()
+        {
+            Level++;
+        }
 
     }
 

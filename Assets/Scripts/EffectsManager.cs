@@ -25,12 +25,9 @@ namespace archero
             }
         }
 
-        public void ShowCardsWithDelay()
-        {
-            Invoke(nameof(ShowCards), 1.8f);
-        }
 
-        private void ShowCards()
+        [ContextMenu("ShowCards")]
+        public void ShowCards()
         {
             List<Effect> effectsToShow = new List<Effect>();
 
@@ -63,7 +60,7 @@ namespace archero
                 effectsForCards.Add(effectsToShow[index]);
             }
 
-            _cardManager.ShowCard(effectsForCards);
+            _cardManager.ShowCards(effectsForCards);
         }
 
         int[] RandomSort(int length, int number)
