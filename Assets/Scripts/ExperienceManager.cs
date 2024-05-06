@@ -50,7 +50,7 @@ namespace archero
             _experience = 0;
             _nextLevelExperience = _experienceCurve.Evaluate(_level);
 
-            yield return new WaitForSecondsRealtime(2f);
+            yield return new WaitForSecondsRealtime(1f);
 
             _effectsManager.ShowCards();
 

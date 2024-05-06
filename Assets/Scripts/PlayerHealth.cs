@@ -1,21 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace archero
 {
     public class PlayerHealth : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        [SerializeField] private float _maxHealth;
+        private float _currenHealth;
+
+        public event Action<float, float> OnHealthChange;
+        public event Action OnDie;
+
+        private void Start()
         {
-        
+            SetHealth(_maxHealth);
         }
 
-        // Update is called once per frame
-        void Update()
+        public void TakeDamage(float value)
         {
-        
+            float newHealth = _currenHealth - value;
+            newHealth = Math.Max(newHealth, 0f);
+            SetHealth(newHealth);
+            if (newHealth == 0)
+            {
+                Die();
+            }
+        }
+
+        private void SetHealth(float value)
+        {
+            _currenHealth = value;
+            OnHealthChange?.Invoke(_currenHealth, _maxHealth);
+        }
+
+        private void Die()
+        {
+            OnDie?.Invoke();
+            Debug.Log("Die");
         }
     }
 }
