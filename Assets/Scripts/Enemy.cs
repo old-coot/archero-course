@@ -1,21 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace archero
 {
     public class Enemy : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        [SerializeField] private Transform _playerTransform;
+        [SerializeField] private float _speed;
+        [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField] private float _rotationLerpRate = 3f;
 
-        // Update is called once per frame
-        void Update()
+        private void FixedUpdate()
         {
-        
+            if (_playerTransform != null)
+            {
+                Vector3 toPlayer = _playerTransform.position - transform.position;
+
+                Quaternion toPlayerRotation = Quaternion.LookRotation(toPlayer, Vector3.up);
+
+                transform.rotation = Quaternion.Lerp(transform.rotation, toPlayerRotation, Time.deltaTime * _rotationLerpRate);
+
+                _rigidbody.velocity = transform.forward * _speed;
+            }
         }
     }
 }
