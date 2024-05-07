@@ -1,4 +1,3 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -20,7 +19,7 @@ namespace archero
         [SerializeField] private EffectsManager _effectsManager;
         [SerializeField] private AnimationCurve _experienceCurve;
 
-        private int _level;
+        private int _level = -1;
 
         private void Awake()
         {
@@ -33,27 +32,20 @@ namespace archero
 
             if (_experience >= _nextLevelExperience)
             {
-                StartCoroutine(UpLevelCoroutine());
+                UpLevel();
             }
 
             DisplayExperience();
         }
 
-        private IEnumerator UpLevelCoroutine()
+        public void UpLevel()
         {
             _level++;
             LevelUp?.Invoke(_level);
-            Time.timeScale = 0;
             _levelText.text = _level.ToString();
-
-
             _experience = 0;
             _nextLevelExperience = _experienceCurve.Evaluate(_level);
-
-            yield return new WaitForSecondsRealtime(1f);
-
             _effectsManager.ShowCards();
-
         }
 
         private void DisplayExperience()

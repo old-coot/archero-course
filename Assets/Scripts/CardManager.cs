@@ -9,6 +9,7 @@ namespace archero
         [SerializeField] private Card[] _effectCards;
 
         [SerializeField] private EffectsManager _effectsManager;
+        [SerializeField] private GameStateManager _gameStateManager;
 
         private void Awake()
         {
@@ -20,7 +21,7 @@ namespace archero
 
         private void Start()
         {
-            Hide();
+            //Hide();
         }
 
         public void ShowCards(List<Effect> effects)
@@ -31,11 +32,13 @@ namespace archero
             {
                 _effectCards[i].Show(effects[i]);
             }
+            _gameStateManager.SetCardState();
         }
 
         public void Hide()
         {
             _cardManagerParent.SetActive(false);
+            _gameStateManager.SetAction();
         }
     }
 }

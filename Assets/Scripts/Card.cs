@@ -52,7 +52,6 @@ namespace archero
         {
             _effectsManager.AddEffect(_effect);
             _cardManager.Hide();
-            Time.timeScale = 1.0f;
         }
 
         private void OnDestroy()

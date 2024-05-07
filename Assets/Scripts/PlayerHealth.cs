@@ -5,6 +5,8 @@ namespace archero
 {
     public class PlayerHealth : MonoBehaviour
     {
+
+        [SerializeField] private GameStateManager _gameStateManager;
         [SerializeField] private float _maxHealth;
         private float _currenHealth;
 
@@ -36,6 +38,7 @@ namespace archero
         private void Die()
         {
             OnDie?.Invoke();
+            _gameStateManager.SetLose();
             Debug.Log("Die");
         }
     }
